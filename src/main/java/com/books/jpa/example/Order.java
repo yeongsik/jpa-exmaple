@@ -1,5 +1,8 @@
 package com.books.jpa.example;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
+@Getter
+@Setter
 public class Order {
 
     @Id @GeneratedValue
@@ -19,6 +24,10 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery; // 배송정보
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
@@ -38,6 +47,13 @@ public class Order {
 
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
-        orderItem.setOrder(this);
+        if (orderItem.getOrder() != this) { // 무한루프 빠지지 않도록 체크
+            orderItem.setOrder(this);
+        }
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
     }
 }

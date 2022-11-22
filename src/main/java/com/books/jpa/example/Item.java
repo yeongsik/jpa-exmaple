@@ -1,16 +1,22 @@
 package com.books.jpa.example;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Item {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
     private Long id;
+
+    @OneToMany(mappedBy = "item")
+    private List<CategoryItem> categoryItems;
     private String name;
     private Integer price;
     private Integer stockQuantity;

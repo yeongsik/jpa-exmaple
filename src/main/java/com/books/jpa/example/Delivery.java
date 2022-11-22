@@ -1,29 +1,26 @@
 package com.books.jpa.example;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
 @Setter
-public class Adress {
+@Getter
+public class Delivery {
 
-    @Id
-    @Column(name = "ADRESS_ID")
+    @Id @GeneratedValue
+    @Column(name = "DELIVERY_ID")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    @OneToOne(mappedBy = "delivery")
+    private Order order;
 
     private String city;
-
     private String street;
-
     private String zipCode;
 
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
 }
-
