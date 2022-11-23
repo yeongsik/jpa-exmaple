@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-public class Category {
+public class Category extends DateBaseEntity {
 
     @Id
     @GeneratedValue

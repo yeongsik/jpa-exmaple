@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-public class Delivery {
+public class Delivery extends DateBaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")

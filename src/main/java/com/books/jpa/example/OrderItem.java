@@ -1,5 +1,6 @@
 package com.books.jpa.example;
 
+import com.books.jpa.example.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "ORDER_ITEM")
 @Setter
 @Getter
-public class OrderItem {
+public class OrderItem extends DateBaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")

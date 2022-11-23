@@ -1,7 +1,8 @@
 package com.books.jpa.example;
 
+import com.books.jpa.example.DateBaseEntity;
+import com.books.jpa.example.Member;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Adress {
+public class Adress extends DateBaseEntity {
 
     @Id
     @Column(name = "ADRESS_ID")
